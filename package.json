@@ -1,20 +1,27 @@
 {
   "name": "ParcelTest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "cam.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
+   "engines": {
     "node": ">=8.9.0"
   },
   "dependencies": {
-    "paper": "^0.12.4"
+    "@tensorflow-models/facemesh": "^0.0.1",
+    "@tensorflow-models/posenet": "^2.2.1",
+    "@tensorflow/tfjs": "^1.7.4",
+    "@tensorflow/tfjs-converter": "^1.7.4",
+    "@tensorflow/tfjs-core": "^1.7.4",
+    "face-api.js": "^0.22.2",
+    "paper": "0.12.4",
+    "stats.js": "^1.0.0"
   },
   "scripts": {
     "start": "",
-    "build": "cross-env NODE_ENV=production parcel build cam.html",
+    "build": "cross-env NODE_ENV=production parcel build cam.html --no-source-maps",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
