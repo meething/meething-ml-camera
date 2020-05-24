@@ -25,6 +25,10 @@ export default class PoseDetector
         this.faceDetection = null;
         this.illustration = null;
         this.canvasScope = paper.default;
+        let canvas = document.querySelector('.illustration-canvas');
+        canvas.width = 800;
+        canvas.height = 800;
+      
         console.log ("Canvas scope = ", this.canvasScope);
         this.canvasWidth = 800;
         this.canvasHeight = 800;
@@ -69,6 +73,7 @@ export default class PoseDetector
         this.video.addEventListener('playing', async ()=> {
         if (!this.loadedModel) {
             await this.loadModels();
+            this.canvasScope.setup(canvas);
             
         }
         
@@ -125,7 +130,7 @@ export default class PoseDetector
                 });
                 //console.log("sending event : ", event.detail);
                 self.video.dispatchEvent(event);
-
+              
                 poses = poses.concat(all_poses);
                 input.dispose();
               
@@ -149,7 +154,7 @@ export default class PoseDetector
                 );
               } else {
                   // paper project undefined!
-                  console.log('debug',self.canvasScope, this.project);
+                  console.log('ERROR! Paper project undefined',self.canvasScope);
               }
               
 
