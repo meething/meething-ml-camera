@@ -12,12 +12,11 @@
     "@tensorflow/tfjs-core": "^1.7.4",
     "face-api.js": "^0.22.2",
     "paper": "^0.12.7",
-    "stats.js": "^1.0.0",
-    "serve": "^11.3.1"
+    "stats.js": "^1.0.0"
   },
   "scripts": {
-    "start": "serve dist",
-    "build": "NODE_ENV=production parcel build cam.html --no-source-maps --out-file index.html",
+    "start": "parcel cam.html --no-source-maps",
+    "build": "NODE_ENV=production parcel build cam.html --no-source-maps -o index.html",
     "lint": "eslint .",
     "link-local": "yalc link"
   },

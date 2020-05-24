@@ -141,10 +141,17 @@ export default class PoseDetector
                 self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
                 }
                 
-              self.canvasScope.project.activeLayer.scale(
-              self.canvasWidth / self.videoWidth,
-              self.canvasHeight / self.videoHeight,
-              new self.canvasScope.Point(0, 0));
+              if (self.canvasScope.project) {
+                self.canvasScope.project.activeLayer.scale(
+                  self.canvasWidth / self.videoWidth,
+                  self.canvasHeight / self.videoHeight,
+                  new self.canvasScope.Point(0, 0)
+                );
+              } else {
+                  // paper project undefined!
+                  console.log('debug',self.canvasScope, this.project);
+              }
+              
 
             }
             catch (err) {
