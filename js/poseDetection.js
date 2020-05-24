@@ -50,18 +50,16 @@ export default class PoseDetector
             this.poseModel = await posenet.load();
             this.faceModel = await facemesh.load();
             this.loadedModel = true;
+          console.log("loaded models");
         }
         
         
-        this.video.addEventListener('playing', ()=> {
+        this.video.addEventListener('playing', async ()=> {
         if (!this.loadedModel) {
-            this.loadModels();
+            await this.loadModels();
+            
         }
-        // if (!this.video) {
-        //     this.video = document.getElementById("local");
-        //     setTimeout(this.sampleAndDetect, 1000);
-        //     return;
-        // }
+        
         this.video.width = 300;
         this.video.height = 300;
         // const canvas = document.getElementById('output');
@@ -91,7 +89,7 @@ export default class PoseDetector
                 //webWorker.postMessage(message, [input]);
 
                 self.faceDetection = await self.faceModel.estimateFaces(input, false, false);
-                //console.log("Facemesh detected : ", self.faceDetection);
+                console.log("Facemesh detected : ", self.faceDetection);
                 let poses = [];
                 let all_poses = await self.poseModel.estimatePoses(input, {
                     flipHorizontal: true,
@@ -100,7 +98,7 @@ export default class PoseDetector
                     scoreThreshold: self.minPartConfidence,
                     nmsRadius: self.nmsRadius
                 });
-                //  console.log("pose detected : ", all_poses);
+                 console.log("pose detected : ", all_poses);
 
                 //Dispatch event
                 var event = new CustomEvent('poseDetected', {
@@ -128,4 +126,5 @@ export default class PoseDetector
     });
     
     
+  }
   }

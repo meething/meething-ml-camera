@@ -1,7 +1,7 @@
 //import { monkeyPatchMediaDevices } from './media-devices.js';
 
 //monkeyPatchMediaDevices();
-
+import PoseDetector from './poseDetection.js';
 async function init() {
     const res = await navigator.mediaDevices.enumerateDevices();
     console.log(res);
@@ -11,6 +11,7 @@ async function init() {
     video.srcObject = stream;
     video.autoplay = true;
     document.body.append(video);
+    new PoseDetector();
 }
 
 init();
