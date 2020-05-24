@@ -2,7 +2,7 @@
   "name": "ParcelTest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "cam.js",
   "scripts": {
     "dev": "parcel cam.html --no-source-maps",
     "build": "parcel build cam.html --no-source-maps",
