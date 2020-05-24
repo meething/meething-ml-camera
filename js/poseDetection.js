@@ -45,7 +45,18 @@ export default class PoseDetector
         this.defaultMultiplier = 1.0;
         this.defaultStride = 16;
         this.defaultInputResolution = 200;
+        
+      //Setup SVG
+      this.illustration = null;
+      this.avatarSvgs = {
+        //  'girl': girlSVG.default,
+        'boy': boySVG.default,
+        //  'abstract': abstractSVG.default,
+        //  'blathers': blathersSVG.default,
+        //  'tom-nook': tomNookSVG.default,
+      };
 
+      this.parseSVG(this.avatarSvgs.boy);
         this.loadModels = async () => {
             this.poseModel = await posenet.load();
             this.faceModel = await facemesh.load();
