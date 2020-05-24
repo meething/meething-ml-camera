@@ -1,7 +1,7 @@
 import { FilterStream } from './filter-stream.js';
 
 // Ideally we'd use an editor or import shaders directly from the API.
-import { distortedTV as shader } from './distorted-tv.js';
+//import { distortedTV as shader } from './distorted-tv.js';
 //import { moneyFilter as shader } from './money-filter.js';
 
 function monkeyPatchMediaDevices() {
