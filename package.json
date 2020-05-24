@@ -10,11 +10,11 @@
     "node": ">=8.9.0"
   },
   "dependencies": {
-    "paper": "file:paper"
+    "paper": ">=0.14.2"
   },
   "scripts": {
     "start": "",
-    "build": "cross-env NODE_ENV=production parcel build camera.html",
+    "build": "cross-env NODE_ENV=production parcel build cam.html",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
