@@ -150,8 +150,8 @@ export default class PoseDetector
                 
               if (self.canvasScope.project) {
                 self.canvasScope.project.activeLayer.scale(
-                  self.canvasWidth / self.videoWidth,
-                  self.canvasHeight / self.videoHeight,
+                  self.canvasWidth / self.videoWidth / 4,
+                  self.canvasHeight / self.videoHeight / 4,
                   new self.canvasScope.Point(0, 0)
                 );
               } else {
@@ -167,7 +167,7 @@ export default class PoseDetector
             }
 
             //requestAnimationFrame(poseDetectionFrame);
-            setTimeout(poseDetectionFrame, 1000);
+            setTimeout(poseDetectionFrame, 500);
         }
 
         poseDetectionFrame();
