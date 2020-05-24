@@ -24,7 +24,8 @@ export default class PoseDetector
         // Canvas
         this.faceDetection = null;
         this.illustration = null;
-        this.canvasScope;
+        this.canvasScope = paper.default;
+        console.log ("Canvas scope = ", this.canvasScope);
         this.canvasWidth = 800;
         this.canvasHeight = 800;
 
