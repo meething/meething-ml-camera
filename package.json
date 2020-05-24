@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "license": "ISC",
-   "engines": {
+  "engines": {
     "node": ">=8.9.0"
   },
   "dependencies": {
@@ -14,19 +14,20 @@
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "face-api.js": "^0.22.2",
-    "paper": "0.12.4",
+    "paper": "^0.12.7",
     "stats.js": "^1.0.0"
   },
   "scripts": {
-    "start": "",
-    "build": "cross-env NODE_ENV=production parcel build cam.html --no-source-maps",
+    "start": "NODE_ENV=production parcel build cam.html --no-source-maps",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
   "browser": {
     "crypto": false
   },
-  "devDependencies": {
+   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-runtime": "~6.23.0",
     "babel-polyfill": "~6.26.0",
