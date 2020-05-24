@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel cam.html --no-source-maps",
-    "build": "parcel build cam.html --no-source-maps"
+    "build": "parcel build cam.html --no-source-maps",
+    "start": ""
   },
   "keywords": [],
   "author": "",
