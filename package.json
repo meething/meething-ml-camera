@@ -6,11 +6,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-   "engines": {
+  "engines": {
     "node": ">=8.9.0"
   },
   "dependencies": {
-    "paper": ">=0.14.2"
+    "paper": "^0.12.4"
   },
   "scripts": {
     "start": "",
