@@ -1,9 +1,7 @@
 {
   "name": "ParcelTest",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "",
-  "main": "cam.js",
-  "keywords": [],
   "author": "",
   "license": "ISC",
    "engines": {
