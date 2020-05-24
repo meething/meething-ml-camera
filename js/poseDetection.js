@@ -17,7 +17,6 @@ export default class PoseDetector
     {
       this.video = document.getElementById("local");
         // Camera stream video element
-
         this.videoWidth = 300;
         this.videoHeight = 300;
 
@@ -26,6 +25,7 @@ export default class PoseDetector
         this.illustration = null;
         this.canvasScope = paper.default;
         let canvas = document.querySelector('.illustration-canvas');
+        this.canvasScope.setup(canvas);
         canvas.width = 800;
         canvas.height = 800;
       
@@ -73,8 +73,6 @@ export default class PoseDetector
         this.video.addEventListener('playing', async ()=> {
         if (!this.loadedModel) {
             await this.loadModels();
-            this.canvasScope.setup(canvas);
-            
         }
         
         this.video.width = 300;
@@ -134,6 +132,8 @@ export default class PoseDetector
                 poses = poses.concat(all_poses);
                 input.dispose();
               
+                self.canvasScope.project.clear();
+              
                 if (poses.length >= 1) {
                 Skeleton.flipPose(poses[0]);
 
@@ -143,6 +143,7 @@ export default class PoseDetector
                 } else {
                   self.illustration.updateSkeleton(poses[0], null);
                 }
+                console.log('draw',self.canvasScope, self.videoWidth, self.videoHeight);
                 self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
                 }
                 
@@ -164,6 +165,7 @@ export default class PoseDetector
                 console.log(err);
             }
 
+            //requestAnimationFrame(poseDetectionFrame);
             setTimeout(poseDetectionFrame, 1000);
         }
 
