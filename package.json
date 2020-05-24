@@ -12,18 +12,19 @@
     "@tensorflow/tfjs-core": "^1.7.4",
     "face-api.js": "^0.22.2",
     "paper": "^0.12.7",
-    "stats.js": "^1.0.0"
+    "stats.js": "^1.0.0",
+    "serve": "^11.3.1"
   },
   "scripts": {
-    "start": "echo done",
-    "build": "NODE_ENV=production parcel build cam.html --no-source-maps",
+    "start": "serve dist",
+    "build": "NODE_ENV=production parcel build cam.html --no-source-maps --out-file index.html",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
   "browser": {
     "crypto": false
   },
-   "devDependencies": {
+  "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "babel-core": "^6.26.3",
