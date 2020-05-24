@@ -6,7 +6,7 @@ import { FileUtils } from './utils/fileUtils.js';
 import * as paper from 'paper';
 
 //import * as girlSVG from '../resources/illustration/girl.svg';
-//import * as boySVG from '../boy.svg';
+import * as boySVG from '../boy.svg';
 //import * as abstractSVG from '../resources/illustration/abstract.svg';
 //import * as blathersSVG from '../resources/illustration/blathers.svg';
 //import * as tomNookSVG from '../resources/illustration/tom-nook.svg';
@@ -70,15 +70,15 @@ class ShaderRenderer {
 
       //Setup SVG
       self.illustration = null;
-      // self.avatarSvgs = {
-      //   //  'girl': girlSVG.default,
-      //   'boy': boySVG.default,
-      //   //  'abstract': abstractSVG.default,
-      //   //  'blathers': blathersSVG.default,
-      //   //  'tom-nook': tomNookSVG.default,
-      // };
+      self.avatarSvgs = {
+        //  'girl': girlSVG.default,
+        'boy': boySVG.default,
+        //  'abstract': abstractSVG.default,
+        //  'blathers': blathersSVG.default,
+        //  'tom-nook': tomNookSVG.default,
+      };
 
-      self.parseSVG('../boy.svg');
+      self.parseSVG(self.avatarSvgs.boy);
 
       //MODEL
       self.loadedModel = false;
