@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel cam.html --no-source-maps",
     "build": "parcel build cam.html --no-source-maps",
-    "start": ""
+    "start": "parcel cam.html --no-source-maps"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "paper": "^0.12.7",
     "parcel-bundler": "^1.12.4"
   },
+  
   "eslintConfig": {
     "extends": "google",
     "rules": {
