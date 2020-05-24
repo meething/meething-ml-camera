@@ -91,6 +91,10 @@ export default class PoseDetector
                 self.faceDetection = await self.faceModel.estimateFaces(input, false, false);
                 console.log("Facemesh detected : ", self.faceDetection);
                 let poses = [];
+                let minPoseConfidence = 0.15;
+                let minPartConfidence = 0.1;
+                let nmsRadius = 30.0;
+
                 let all_poses = await self.poseModel.estimatePoses(input, {
                     flipHorizontal: true,
                     decodingMethod: 'multi-person',
@@ -112,6 +116,24 @@ export default class PoseDetector
 
                 poses = poses.concat(all_poses);
                 input.dispose();
+              
+                if (poses.length >= 1) {
+                Skeleton.flipPose(poses[0]);
+
+                if (self.faceDetection && self.faceDetection.length > 0) {
+                  let face = Skeleton.toFaceFrame(self.faceDetection[0]);
+                  self.illustration.updateSkeleton(poses[0], face);
+                } else {
+                  self.illustration.updateSkeleton(poses[0], null);
+                }
+                self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
+                }
+                
+              self.canvasScope.project.activeLayer.scale(
+              self.canvasWidth / self.videoWidth,
+              self.canvasHeight / self.videoHeight,
+              new self.canvasScope.Point(0, 0));
+
             }
             catch (err) {
                 // input.dispose();
@@ -126,5 +148,12 @@ export default class PoseDetector
     });
     
     
+  }
+    
+    async parseSVG(target) {
+      let svgScope = await SVGUtils.importSVG(target /* SVG string or file path */);
+      let skeleton = new Skeleton(svgScope);
+      this.illustration = new PoseIllustration(this.canvasScope);
+      this.illustration.bindSkeleton(skeleton, svgScope);
   }
   }
