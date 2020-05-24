@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "cam.js",
-  "scripts": {
-    "dev": "parcel cam.html --no-source-maps",
-    "build": "cross-env NODE_ENV=production parcel build cam.html",
-    "start": ""
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  
+   "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
     "paper": "file:paper"
   },
