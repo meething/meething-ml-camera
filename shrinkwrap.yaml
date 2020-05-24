@@ -1,7 +1,6 @@
 devDependencies:
   '@babel/core': 7.9.6
   '@babel/plugin-transform-runtime': 7.9.6
-  paper: 0.12.7
   parcel-bundler: 1.12.4
 packages:
   /@babel/code-frame/7.8.3:
@@ -3713,12 +3712,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
-  /paper/0.12.7:
-    dev: true
-    engines:
-      node: '>=8.0.0'
-    resolution:
-      integrity: sha512-vaSTibdFAp4aVfCXmetxnPYkoGPMDQA1JPFKPCL76RnNOCoTm36nTj4SsfjBMfVeUFr94sbMGnPEBKjQnHzd3w==
   /parcel-bundler/1.12.4:
     dependencies:
       '@babel/code-frame': 7.8.3
@@ -5501,5 +5494,4 @@ shrinkwrapVersion: 3
 specifiers:
   '@babel/core': ^7.9.6
   '@babel/plugin-transform-runtime': ^7.9.6
-  paper: ^0.12.4
   parcel-bundler: ^1.12.4
