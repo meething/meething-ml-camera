@@ -604,7 +604,7 @@ export class Skeleton {
                 selectedGroups.push(this.boneGroups[key]);
             }
         });
-        console.log("selectedGroups = ", selectedGroups);
+        //console.log("selectedGroups = ", selectedGroups);
         return selectedGroups.flatten();
     }
 

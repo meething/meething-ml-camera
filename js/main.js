@@ -1,6 +1,6 @@
-//import { monkeyPatchMediaDevices } from './media-devices.js';
+import { monkeyPatchMediaDevices } from './media-devices.js';
+monkeyPatchMediaDevices();
 
-//monkeyPatchMediaDevices();
 import PoseDetector from './poseDetection.js';
 async function init() {
     const res = await navigator.mediaDevices.enumerateDevices();

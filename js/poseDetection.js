@@ -78,15 +78,6 @@ export default class PoseDetector
         
         this.video.width = 300;
         this.video.height = 300;
-        // const canvas = document.getElementById('output');
-        // const keypointCanvas = document.getElementById('keypoints');
-        // //const videoCtx = canvas.getContext('2d');
-        // const keypointCtx = keypointCanvas.getContext('2d');
-
-        // canvas.style.width = video.getBoundingClientRect().width + "px";
-        // canvas.style.height = video.getBoundingClientRect().height + "px";
-        // canvas.style.left = video.getBoundingClientRect().left + "px";
-        // canvas.style.top = video.getBoundingClientRect().top + "px";
 
         var self = this;
         async function poseDetectionFrame() {
@@ -97,28 +88,21 @@ export default class PoseDetector
                     self.video.style.width = self.video.style.height;
                 }
                 const input = tf.browser.fromPixels(self.video);
-                // var message = {
-                //       input: input,
-                //       width: video.width,
-                //       height: video.height
-                //     };
-                //webWorker.postMessage(message, [input]);
-
                 self.faceDetection = await self.faceModel.estimateFaces(input, false, false);
-                console.log("Facemesh detected : ", self.faceDetection);
+                //console.log("Facemesh detected : ", self.faceDetection);
                 let poses = [];
                 let minPoseConfidence = 0.15;
                 let minPartConfidence = 0.1;
                 let nmsRadius = 30.0;
 
                 let all_poses = await self.poseModel.estimatePoses(input, {
-                    flipHorizontal: true,
+                    flipHorizontal: false,
                     decodingMethod: 'multi-person',
                     maxDetections: 1,
                     scoreThreshold: self.minPartConfidence,
                     nmsRadius: self.nmsRadius
                 });
-                 console.log("pose detected : ", all_poses);
+                //console.log("pose detected : ", all_poses);
 
                 //Dispatch event
                 var event = new CustomEvent('poseDetected', {
@@ -127,7 +111,6 @@ export default class PoseDetector
                         pose: all_poses
                     }
                 });
-                //console.log("sending event : ", event.detail);
                 self.video.dispatchEvent(event);
               
                 poses = poses.concat(all_poses);
@@ -144,7 +127,6 @@ export default class PoseDetector
                   } else {
                     self.illustration.updateSkeleton(poses[0], null);
                   }
-                  console.log('paper draw',self.canvasScope, self.videoWidth, self.videoHeight);
                   self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
                 }
                 
