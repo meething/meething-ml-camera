@@ -4,6 +4,7 @@ import { PoseIllustration } from './illustrationGen/illustration.js';
 import { Skeleton, facePartName2Index } from './illustrationGen/skeleton.js';
 import { FileUtils } from './utils/fileUtils.js';
 import * as paper from 'paper';
+import "babel-polyfill";
 
 //import * as girlSVG from '../resources/illustration/girl.svg';
 import * as boySVG from '../boy.svg';
@@ -25,13 +26,13 @@ export default class PoseDetector
         this.illustration = null;
         this.canvasScope = paper.default;
         let canvas = document.querySelector('.illustration-canvas');
-        this.canvasScope.setup(canvas);
         canvas.width = 800;
-        canvas.height = 800;
-      
-        console.log ("Canvas scope = ", this.canvasScope);
+        canvas.height = 600;
+        this.canvasScope.setup(canvas);
+
         this.canvasWidth = 800;
-        this.canvasHeight = 800;
+        this.canvasHeight = 600;
+        console.log ("Canvas scope = ", this.canvasScope);
 
         // ML models
         // let facemesh;
@@ -134,17 +135,17 @@ export default class PoseDetector
               
                 self.canvasScope.project.clear();
               
-                if (poses.length >= 1) {
-                Skeleton.flipPose(poses[0]);
+                if (poses.length >= 1 && self.illustration) {
+                  Skeleton.flipPose(poses[0]);
 
-                if (self.faceDetection && self.faceDetection.length > 0) {
-                  let face = Skeleton.toFaceFrame(self.faceDetection[0]);
-                  self.illustration.updateSkeleton(poses[0], face);
-                } else {
-                  self.illustration.updateSkeleton(poses[0], null);
-                }
-                console.log('draw',self.canvasScope, self.videoWidth, self.videoHeight);
-                self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
+                  if (self.faceDetection && self.faceDetection.length > 0) {
+                    let face = Skeleton.toFaceFrame(self.faceDetection[0]);
+                    self.illustration.updateSkeleton(poses[0], face);
+                  } else {
+                    self.illustration.updateSkeleton(poses[0], null);
+                  }
+                  console.log('paper draw',self.canvasScope, self.videoWidth, self.videoHeight);
+                  self.illustration.draw(self.canvasScope, self.videoWidth, self.videoHeight);
                 }
                 
               if (self.canvasScope.project) {
