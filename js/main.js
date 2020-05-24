@@ -7,7 +7,7 @@ async function init() {
     console.log(res);
     const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: 'virtual' }, audio: false });
     const video = document.createElement('video');
-    video.setAttribute("id", 'local')
+    video.setAttribute("id", 'local');
     video.srcObject = stream;
     video.autoplay = true;
     document.body.append(video);
