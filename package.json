@@ -4,9 +4,6 @@
   "description": "",
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": ">=8.9.0"
-  },
   "dependencies": {
     "@tensorflow-models/facemesh": "^0.0.1",
     "@tensorflow-models/posenet": "^2.2.1",
@@ -18,7 +15,8 @@
     "stats.js": "^1.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production parcel build cam.html --no-source-maps",
+    "start": "echo done",
+    "build": "NODE_ENV=production parcel build cam.html --no-source-maps",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
