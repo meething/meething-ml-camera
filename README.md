@@ -27,5 +27,6 @@ Follow the instructions to install as an extension in your preferred browser:
 
 
 #### Credits
+This humble _hack-speriment_ would not be possible without the following projects:
 * [Virtual Browser Camera shaders](https://github.com/spite/virtual-webcam) by [spite](https://github.com/spite)
 * [Pose Animator](https://github.com/yemount/pose-animator) by [yemount](https://github.com/yemount)
