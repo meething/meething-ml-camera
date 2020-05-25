@@ -1,6 +1,5 @@
 .cache/
 node_modules/
-dist/
 .bash_history
 .glitch-assets
 .wget-hsts
