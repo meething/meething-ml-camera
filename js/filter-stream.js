@@ -4,7 +4,9 @@ class FilterStream {
     this.stream = stream;
     const video = document.createElement("video");
     const canvas = document.createElement("canvas");
+    const svg = document.querySelector(".illustration-canvas");
     this.canvas = canvas;
+    this.svg = svg;
 
     video.addEventListener("playing", () => {
       // Use a 2D Canvas.
@@ -15,8 +17,7 @@ class FilterStream {
     video.srcObject = stream;
     video.autoplay = true;
     this.video = video;
-    this.ctx = this.canvas.getContext('2d');
-    
+    this.ctx = this.canvas.getContext("2d");
     this.outputStream = this.canvas.captureStream();
   }
 
@@ -24,12 +25,14 @@ class FilterStream {
     // Use a 2D Canvas
     // this.ctx.filter = 'invert(1)';
     this.ctx.drawImage(this.video, 0, 0);
-    this.ctx.fillStyle = '#ff00ff';
-    this.ctx.textBaseline = 'top';
-    this.ctx.fillText('Virtual', 10, 10)
+    this.ctx.fillStyle = "#ff00ff";
+    this.ctx.textBaseline = "top";
+    this.ctx.fillText("Virtual", 10, 10);
+    
+    // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
 
     requestAnimationFrame(() => this.update());
   }
 }
 
-export { FilterStream }
+export { FilterStream };
