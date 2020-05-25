@@ -8,6 +8,14 @@ Machine-Learning powered Virtual MediaDevice extension for any browser-based con
 Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
 
 #### Usage
+To test the model without installing any extension, run the following or use glitch:
+```
+npm install
+npm run build
+npm start
+```
+
+#### Usage as Extension
 Follow the instructions to install as an extension in your preferred browser:
 
 
