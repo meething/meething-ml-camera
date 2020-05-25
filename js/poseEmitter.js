@@ -1,3 +1,9 @@
+import * as posenet from '@tensorflow-models/posenet';
+import * as facemesh from '@tensorflow-models/facemesh';
+import * as tf from '@tensorflow/tfjs';
+import * as paper from "paper";
+import "babel-polyfill";
+
 import {
   drawKeypoints,
   drawPoint,
@@ -10,15 +16,14 @@ import { SVGUtils } from "./utils/svgUtils.js";
 import { PoseIllustration } from "./illustrationGen/illustration.js";
 import { Skeleton, facePartName2Index } from "./illustrationGen/skeleton.js";
 import { FileUtils } from "./utils/fileUtils.js";
-import * as paper from "paper";
-import "babel-polyfill";
+
 
 import * as boySVG from "../svg/boy.svg";
 import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseEmitter {
-  
-  constructor(video,videoWidth,videoHeight,callback) {
+
+  constructor(video, videoWidth, videoHeight, callback) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
     this.videoWidth = videoWidth ? videoWidth : 320;
@@ -38,8 +43,8 @@ export default class PoseEmitter {
     this.canvasWidth = this.canvas.width;
     this.canvasHeight = this.canvas.height;
     console.log("Canvas scope = ", this.canvasScope);
-    
-    
+
+
     // ML models
     // let facemesh;
     this.minPoseConfidence = 0.15;
@@ -72,28 +77,26 @@ export default class PoseEmitter {
       this.loadedModel = true;
       console.log("loaded models");
     };
-    
+
     this.loadModels();
     this.isRunning = false;
   }
-  
-  async sampleAndDetect()
-  {
+
+  async sampleAndDetect() {
     var self = this;
-    
+
     if (!self.loadedModel) {
       return;
     }
-    
-    if(this.isRunning)
-      {
-        return;
-      }
+
+    if (this.isRunning) {
+      return;
+    }
     this.isRunning = true;
     self.video.width = self.videoWidth;
     self.video.height = self.videoHeight;
 
-      
+
     var input;
     try {
       self.video.style.clipPath = "none"; //disable the clipping, to make pose estimation work
@@ -119,7 +122,7 @@ export default class PoseEmitter {
         scoreThreshold: self.minPartConfidence,
         nmsRadius: self.nmsRadius
       });
-     console.log("pose detected : ", all_poses);
+      console.log("pose detected : ", all_poses);
 
       //Dispatch event
       // var event = new CustomEvent("poseDetected", {
@@ -162,23 +165,23 @@ export default class PoseEmitter {
         console.log("ERROR! Paper project undefined", self.canvasScope);
       }
 
-        // Send the activelayer to the callback function
-        // if(callback){ 
-        //   callback(self.canvasScope.project.activeLayer);
-        // }
+      // Send the activelayer to the callback function
+      // if(callback){ 
+      //   callback(self.canvasScope.project.activeLayer);
+      // }
 
-      } catch (err) {
-        // input.dispose();
-        console.log(err);
-      }
-    this.isRunning = false;  
+    } catch (err) {
+      // input.dispose();
+      console.log(err);
+    }
+    this.isRunning = false;
     //return self.canvasScope.project.activeLayer;
-    
+
     // console.log("pose canvas = ", self.canvas);
     return self.canvas;
-    }
-    
-  
+  }
+
+
 
   async parseSVG(target) {
     let svgScope = await SVGUtils.importSVG(
