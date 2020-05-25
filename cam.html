@@ -12,7 +12,7 @@
         }
 
         .canvas-container {
-            width: 800px;
+            width: 320px;
             max-width: 100%;
             display: flex;
             justify-content: center;
@@ -37,19 +37,6 @@
             border: 1px solid #eeeeee;
         }
 
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            color: black;
-        }
-
-        .footer-text {
-            max-width: 600px;
-            text-align: center;
-            margin: auto;
-        }
 
         @media only screen and (max-width: 600px) {
 
@@ -59,55 +46,12 @@
             }
         }
 
-        /*
-         *  The following loading spinner CSS is from SpinKit project
-         *  https://github.com/tobiasahlin/SpinKit
-         */
-        .sk-spinner-pulse {
-            width: 20px;
-            height: 20px;
-            margin: auto 10px;
-            float: left;
-            background-color: #333;
-            border-radius: 100%;
-            -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
-            animation: sk-pulseScaleOut 1s infinite ease-in-out;
-        }
-
-        @-webkit-keyframes sk-pulseScaleOut {
-            0% {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-
-            100% {
-                -webkit-transform: scale(1.0);
-                transform: scale(1.0);
-                opacity: 0;
-            }
-        }
-
-        @keyframes sk-pulseScaleOut {
-            0% {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-
-            100% {
-                -webkit-transform: scale(1.0);
-                transform: scale(1.0);
-                opacity: 0;
-            }
-        }
-
-        .spinner-text {
-            float: left;
-        }
+       
       
         .video-local {
             left: 0px;
             top: 0px;
-            position: absolute;
+            //position: absolute;
         }
       
       

@@ -6,11 +6,8 @@ import { FileUtils } from './utils/fileUtils.js';
 import * as paper from 'paper';
 import "babel-polyfill";
 
-//import * as girlSVG from '../resources/illustration/girl.svg';
 import * as boySVG from '../svg/boy.svg';
-//import * as abstractSVG from '../resources/illustration/abstract.svg';
-//import * as blathersSVG from '../resources/illustration/blathers.svg';
-//import * as tomNookSVG from '../resources/illustration/tom-nook.svg';
+import * as girlSVG from '../svg/girl.svg';
 
 export default class PoseDetector
   {
@@ -18,20 +15,20 @@ export default class PoseDetector
     {
       this.video = document.getElementById("local");
         // Camera stream video element
-        this.videoWidth = 300;
-        this.videoHeight = 300;
+        this.videoWidth = 320;
+        this.videoHeight = 240;
 
         // Canvas
         this.faceDetection = null;
         this.illustration = null;
         this.canvasScope = paper.default;
         let canvas = document.querySelector('.illustration-canvas');
-        canvas.width = 800;
-        canvas.height = 600;
+        canvas.width = 320;
+        canvas.height = 240;
         this.canvasScope.setup(canvas);
 
-        this.canvasWidth = 800;
-        this.canvasHeight = 600;
+        this.canvasWidth = 320;
+        this.canvasHeight = 240;
         console.log ("Canvas scope = ", this.canvasScope);
 
         // ML models
@@ -57,9 +54,7 @@ export default class PoseDetector
       this.avatarSvgs = {
         //  'girl': girlSVG.default,
         'boy': boySVG.default,
-        //  'abstract': abstractSVG.default,
-        //  'blathers': blathersSVG.default,
-        //  'tom-nook': tomNookSVG.default,
+
       };
 
       this.parseSVG(this.avatarSvgs.boy);
@@ -132,8 +127,8 @@ export default class PoseDetector
                 
               if (self.canvasScope.project) {
                 self.canvasScope.project.activeLayer.scale(
-                  self.canvasWidth / self.videoWidth / 4,
-                  self.canvasHeight / self.videoHeight / 4,
+                  self.canvasWidth / self.videoWidth,
+                  self.canvasHeight / self.videoHeight,
                   new self.canvasScope.Point(0, 0)
                 );
               } else {
@@ -149,7 +144,7 @@ export default class PoseDetector
             }
 
             //requestAnimationFrame(poseDetectionFrame);
-            setTimeout(poseDetectionFrame, 500);
+            setTimeout(poseDetectionFrame, 200);
         }
 
         poseDetectionFrame();
