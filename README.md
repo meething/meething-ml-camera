@@ -1,7 +1,7 @@
 <img src="https://i.imgur.com/XS79fTC.png" width=200> <img width="100" alt="mozilla-builders" src="https://user-images.githubusercontent.com/1423657/81992335-85346480-9643-11ea-8754-8275e98e06bc.png">
 
 ### Meething : Machine-Learning Camera
-Machine-Learning powered Virtual MediaDevice in a browser extension for any browser-based conferencing service for image privacy and fun.
+Machine-Learning powered Virtual MediaDevice extension for any browser-based conferencing service.
 
 ![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
 
