@@ -37,10 +37,10 @@ class FilterStream {
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);
     let svgCanvas = this.poseEmitter.sampleAndDetect();
-    if(svgCanvas){
+    if(svgCanvas instanceof HTMLCanvasElement){
       console.log("SVG invisible canvas - ", svgCanvas);
-      let svgImage = svgCanvas.getContext("2d").createImageData(svgCanvas.width, svgCanvas.height);
-      this.ctx.drawImage(svgImage, 0, 0);
+      //let svgImage = svgCanvas.getContext("2d").createImageData(svgCanvas.width, svgCanvas.height);
+      this.ctx.drawImage(svgCanvas, 0, 0);
     // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
     }
     requestAnimationFrame(() => this.update());

@@ -171,8 +171,8 @@ export default class PoseEmitter {
         console.log(err);
       }
     this.isRunning = false;  
-    // return self.canvasScope.project.activeLayer;
-    return self.canvas;
+    return self.canvasScope.project.activeLayer;
+    //return self.canvas;
     }
     
   
