@@ -17,23 +17,24 @@ import * as boySVG from "../svg/boy.svg";
 import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseDetector {
-  constructor(video) {
+  constructor(video,videoWidth,videoHeight) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
-    this.videoWidth = 320;
-    this.videoHeight = 240;
+    this.videoWidth = videoWidth ? videoWidth : 320;
+    this.videoHeight = videoHeight ? videoHeight : 240;
 
     // Canvas
     this.faceDetection = null;
     this.illustration = null;
     this.canvasScope = paper.default;
     let canvas = document.querySelector(".illustration-canvas");
-    canvas.width = 320;
-    canvas.height = 240;
+    // TODO: use an invisible canvas we return at the end, do not render it
+    canvas.width = videoWidth ? videoWidth : 320;
+    canvas.height = videoHeight ? videoHeight : 240;
     this.canvasScope.setup(canvas);
 
-    this.canvasWidth = 320;
-    this.canvasHeight = 240;
+    this.canvasWidth = canvas.width;
+    this.canvasHeight = canvas.height;
     console.log("Canvas scope = ", this.canvasScope);
 
     // ML models
@@ -74,8 +75,8 @@ export default class PoseDetector {
         await this.loadModels();
       }
 
-      this.video.width = 300;
-      this.video.height = 300;
+      this.video.width = this.videoWidth;
+      this.video.height = this.videoHeight;
 
       var self = this;
       async function poseDetectionFrame() {
