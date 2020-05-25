@@ -31,18 +31,15 @@ class FilterStream {
     // this.ctx.filter = 'invert(1)';
     this.canvas.width = this.video.videoWidth;
     this.canvas.height = this.video.videoHeight;
+    this.svg.width = this.video.videoWidth;
+    this.svg.height = this.video.videoHeight;
     
     this.ctx.drawImage(this.video, 0, 0);
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);
-    let svgCanvas = this.poseEmitter.sampleAndDetect();
-    if(svgCanvas instanceof HTMLCanvasElement){
-      console.log("SVG invisible canvas - ", svgCanvas);
-      //let svgImage = svgCanvas.getContext("2d").createImageData(svgCanvas.width, svgCanvas.height);
-      this.ctx.drawImage(svgCanvas, 0, 0);
-    // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
-    }
+    this.drawOnCanvas();
+    
     requestAnimationFrame(() => this.update());
   }
   
@@ -50,6 +47,17 @@ class FilterStream {
   {
     self.canvasActiveLayer = activeLayer;
     console.log("Set canvas active layer: ", activeLayer)
+  }
+  
+  async drawOnCanvas()
+  {
+    let svgCanvas = await this.poseEmitter.sampleAndDetect();
+    if(svgCanvas){
+      console.log("SVG invisible canvas - ", svgCanvas);
+      //let svgImage = svgCanvas.getContext("2d").createImageData(svgCanvas.width, svgCanvas.height);
+      this.ctx.drawImage(svgCanvas, 0, 0);
+    // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
+    }
   }
   
 }
