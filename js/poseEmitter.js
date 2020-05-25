@@ -17,6 +17,7 @@ import * as boySVG from "../svg/boy.svg";
 import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseEmitter {
+  
   constructor(video,videoWidth,videoHeight,callback) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
@@ -70,104 +71,101 @@ export default class PoseEmitter {
       this.loadedModel = true;
       console.log("loaded models");
     };
+  }
+  
+  async sampleAndDetect()
+  {
+    var self = this;
     
-    sampleAndDetect()
-    {
-    this.video.addEventListener("playing", async () => {
-      if (!this.loadedModel) {
-        await this.loadModels();
+    if (!self.loadedModel) {
+      await self.loadModels();
+    }
+
+    self.video.width = self.videoWidth;
+    self.video.height = self.videoHeight;
+
+      
+    var input;
+    try {
+      self.video.style.clipPath = "none"; //disable the clipping, to make pose estimation work
+      if (self.video.style.width !== self.video.style.height) {
+        self.video.style.width = self.video.style.height;
+      }
+      const input = tf.browser.fromPixels(self.video);
+      self.faceDetection = await self.faceModel.estimateFaces(
+        input,
+        false,
+        false
+      );
+      //console.log("Facemesh detected : ", self.faceDetection);
+      let poses = [];
+      let minPoseConfidence = 0.15;
+      let minPartConfidence = 0.1;
+      let nmsRadius = 30.0;
+
+      let all_poses = await self.poseModel.estimatePoses(input, {
+        flipHorizontal: false,
+        decodingMethod: "multi-person",
+        maxDetections: 1,
+        scoreThreshold: self.minPartConfidence,
+        nmsRadius: self.nmsRadius
+      });
+     // console.log("pose detected : ", all_poses);
+
+      //Dispatch event
+      var event = new CustomEvent("poseDetected", {
+        detail: {
+          faceMesh: self.faceDetection,
+          pose: all_poses
+        }
+      });
+      self.video.dispatchEvent(event);
+
+      poses = poses.concat(all_poses);
+      input.dispose();
+
+      self.canvasScope.project.clear();
+
+      if (poses.length >= 1 && self.illustration) {
+        Skeleton.flipPose(poses[0]);
+
+        if (self.faceDetection && self.faceDetection.length > 0) {
+          let face = Skeleton.toFaceFrame(self.faceDetection[0]);
+          self.illustration.updateSkeleton(poses[0], face);
+        } else {
+          self.illustration.updateSkeleton(poses[0], null);
+        }
+        self.illustration.draw(
+          self.canvasScope,
+          self.videoWidth,
+          self.videoHeight
+        );
       }
 
-      this.video.width = this.videoWidth;
-      this.video.height = this.videoHeight;
-
-      var self = this;
-      async function poseDetectionFrame() {
-        var input;
-        try {
-          self.video.style.clipPath = "none"; //disable the clipping, to make pose estimation work
-          if (self.video.style.width !== self.video.style.height) {
-            self.video.style.width = self.video.style.height;
-          }
-          const input = tf.browser.fromPixels(self.video);
-          self.faceDetection = await self.faceModel.estimateFaces(
-            input,
-            false,
-            false
+        if (self.canvasScope.project) {
+          self.canvasScope.project.activeLayer.scale(
+            self.canvasWidth / self.videoWidth,
+            self.canvasHeight / self.videoHeight,
+            new self.canvasScope.Point(50, 200)
           );
-          //console.log("Facemesh detected : ", self.faceDetection);
-          let poses = [];
-          let minPoseConfidence = 0.15;
-          let minPartConfidence = 0.1;
-          let nmsRadius = 30.0;
+        } else {
+          // paper project undefined!
+          console.log("ERROR! Paper project undefined", self.canvasScope);
+        }
 
-          let all_poses = await self.poseModel.estimatePoses(input, {
-            flipHorizontal: false,
-            decodingMethod: "multi-person",
-            maxDetections: 1,
-            scoreThreshold: self.minPartConfidence,
-            nmsRadius: self.nmsRadius
-          });
-         // console.log("pose detected : ", all_poses);
+        // Send the activelayer to the callback function
+        // if(callback){ 
+        //   callback(self.canvasScope.project.activeLayer);
+        // }
 
-          //Dispatch event
-          var event = new CustomEvent("poseDetected", {
-            detail: {
-              faceMesh: self.faceDetection,
-              pose: all_poses
-            }
-          });
-          self.video.dispatchEvent(event);
-
-          poses = poses.concat(all_poses);
-          input.dispose();
-
-          self.canvasScope.project.clear();
-
-          if (poses.length >= 1 && self.illustration) {
-            Skeleton.flipPose(poses[0]);
-
-            if (self.faceDetection && self.faceDetection.length > 0) {
-              let face = Skeleton.toFaceFrame(self.faceDetection[0]);
-              self.illustration.updateSkeleton(poses[0], face);
-            } else {
-              self.illustration.updateSkeleton(poses[0], null);
-            }
-            self.illustration.draw(
-              self.canvasScope,
-              self.videoWidth,
-              self.videoHeight
-            );
-          }
-
-          if (self.canvasScope.project) {
-            self.canvasScope.project.activeLayer.scale(
-              self.canvasWidth / self.videoWidth,
-              self.canvasHeight / self.videoHeight,
-              new self.canvasScope.Point(50, 200)
-            );
-          } else {
-            // paper project undefined!
-            console.log("ERROR! Paper project undefined", self.canvasScope);
-          }
-          
-          // Send the activelayer to the callback function
-          if(callback){ 
-            callback(self.canvasScope.project.activeLayer);
-          }
-          
         } catch (err) {
           // input.dispose();
           console.log(err);
         }
-
-        setTimeout(poseDetectionFrame, 200);
-      }
-
-      poseDetectionFrame();
-    });
+      
     }
-  }
+    
+  
 
   async parseSVG(target) {
     let svgScope = await SVGUtils.importSVG(
