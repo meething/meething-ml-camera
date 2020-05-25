@@ -71,6 +71,8 @@ export default class PoseEmitter {
       this.loadedModel = true;
       console.log("loaded models");
     };
+    
+    this.loadModels();
   }
   
   async sampleAndDetect()
@@ -78,7 +80,7 @@ export default class PoseEmitter {
     var self = this;
     
     if (!self.loadedModel) {
-      await self.loadModels();
+      return;
     }
 
     self.video.width = self.videoWidth;
@@ -110,7 +112,7 @@ export default class PoseEmitter {
         scoreThreshold: self.minPartConfidence,
         nmsRadius: self.nmsRadius
       });
-     // console.log("pose detected : ", all_poses);
+     console.log("pose detected : ", all_poses);
 
       //Dispatch event
       var event = new CustomEvent("poseDetected", {
@@ -163,6 +165,7 @@ export default class PoseEmitter {
         console.log(err);
       }
       
+    return self.canvasScope.project.activeLayer;
     }
     
   
