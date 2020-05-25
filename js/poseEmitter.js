@@ -142,26 +142,26 @@ export default class PoseEmitter {
         );
       }
 
-        if (self.canvasScope.project) {
-          self.canvasScope.project.activeLayer.scale(
-            self.canvasWidth / self.videoWidth,
-            self.canvasHeight / self.videoHeight,
-            new self.canvasScope.Point(50, 200)
-          );
-        } else {
-          // paper project undefined!
-          console.log("ERROR! Paper project undefined", self.canvasScope);
-        }
+      if (self.canvasScope.project) {
+        self.canvasScope.project.activeLayer.scale(
+          self.canvasWidth / self.videoWidth,
+          self.canvasHeight / self.videoHeight,
+          new self.canvasScope.Point(50, 200)
+        );
+      } else {
+        // paper project undefined!
+        console.log("ERROR! Paper project undefined", self.canvasScope);
+      }
 
         // Send the activelayer to the callback function
         // if(callback){ 
         //   callback(self.canvasScope.project.activeLayer);
         // }
 
-        } catch (err) {
-          // input.dispose();
-          console.log(err);
-        }
+      } catch (err) {
+        // input.dispose();
+        console.log(err);
+      }
       
     }
     

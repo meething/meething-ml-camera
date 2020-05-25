@@ -23,7 +23,7 @@ class FilterStream {
     this.ctx = this.canvas.getContext("2d");
     this.outputStream = this.canvas.captureStream();
     this.canvasActiveLayer = null;
-    new PoseEmitter(this.video, false, false, this.setCanvasActiveLayer)
+    new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight, this.setCanvasActiveLayer)
   }
 
   update() {
