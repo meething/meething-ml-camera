@@ -20,7 +20,7 @@ class FilterStream {
     video.srcObject = stream;
     video.autoplay = true;
     this.video = video;
-    this.ctx = this.canvas.getContext("2d");
+    this.ctx = this.svg.getContext("2d");
     this.outputStream = this.canvas.captureStream();
     this.canvasActiveLayer = null;
     this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight, false)
@@ -36,7 +36,8 @@ class FilterStream {
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);
-    this.ctx = this.poseEmitter.sampleAndDetect();
+    let svgCanvas = this.poseEmitter.sampleAndDetect();
+    this.ctx.drawImage(svgCanvas, 0, 0);
     // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
     
     requestAnimationFrame(() => this.update());
