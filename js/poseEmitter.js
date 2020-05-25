@@ -136,7 +136,7 @@ export default class PoseEmitter {
       self.canvasScope.project.clear();
 
       if (poses.length >= 1 && self.illustration) {
-        Skeleton.flipPose(poses[0]);
+        //Skeleton.flipPose(poses[0]);
 
         if (self.faceDetection && self.faceDetection.length > 0) {
           let face = Skeleton.toFaceFrame(self.faceDetection[0]);
