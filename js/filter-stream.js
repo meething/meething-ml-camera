@@ -29,11 +29,14 @@ class FilterStream {
   update() {
     // Use a 2D Canvas
     // this.ctx.filter = 'invert(1)';
+    this.canvas.width = this.video.videoWidth;
+    this.canvas.height = this.video.videoHeight;
+    
     this.ctx.drawImage(this.video, 0, 0);
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);
-    this.canvasActiveLayer = this.poseEmitter.sampleAndDetect();
+    this.ctx = this.poseEmitter.sampleAndDetect();
     // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
     
     requestAnimationFrame(() => this.update());

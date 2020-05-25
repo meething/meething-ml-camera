@@ -171,7 +171,7 @@ export default class PoseEmitter {
         console.log(err);
       }
     this.isRunning = false;  
-    return self.canvas.getContext("2d");
+    return self.canvasScope.project.activeLayer;
     }
     
   
