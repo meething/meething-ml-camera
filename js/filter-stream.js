@@ -34,7 +34,7 @@ class FilterStream {
     this.svg.width = this.video.videoWidth;
     this.svg.height = this.video.videoHeight;
     
-    this.ctx.drawImage(this.video, 0, 0);
+    // this.ctx.drawImage(this.video, 0, 0);
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);

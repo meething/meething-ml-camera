@@ -30,13 +30,13 @@ export default class PoseEmitter {
     this.canvasScope = paper.default;
     // let canvas = document.querySelector(".illustration-canvas");
     // TODO: use an invisible canvas we return at the end, do not render it
-    let canvas = document.createElement('canvas');
-    canvas.width = videoWidth ? videoWidth : 320;
-    canvas.height = videoHeight ? videoHeight : 240;
-    this.canvasScope.setup(canvas);
+    this.canvas = document.createElement('canvas');
+    this.canvas.width = videoWidth ? videoWidth : 320;
+    this.canvas.height = videoHeight ? videoHeight : 240;
+    this.canvasScope.setup(this.canvas);
 
-    this.canvasWidth = canvas.width;
-    this.canvasHeight = canvas.height;
+    this.canvasWidth = this.canvas.width;
+    this.canvasHeight = this.canvas.height;
     console.log("Canvas scope = ", this.canvasScope);
 
     // ML models
@@ -121,13 +121,13 @@ export default class PoseEmitter {
      console.log("pose detected : ", all_poses);
 
       //Dispatch event
-      var event = new CustomEvent("poseDetected", {
-        detail: {
-          faceMesh: self.faceDetection,
-          pose: all_poses
-        }
-      });
-      self.video.dispatchEvent(event);
+      // var event = new CustomEvent("poseDetected", {
+      //   detail: {
+      //     faceMesh: self.faceDetection,
+      //     pose: all_poses
+      //   }
+      // });
+      // self.video.dispatchEvent(event);
 
       poses = poses.concat(all_poses);
       input.dispose();
@@ -172,6 +172,8 @@ export default class PoseEmitter {
       }
     this.isRunning = false;  
     //return self.canvasScope.project.activeLayer;
+    
+    console.log("pose canvas = ", self.canvas);
     return self.canvas;
     }
     
