@@ -5,8 +5,7 @@ Machine-Learning powered Virtual MediaDevice extension for any browser-based con
 
 ![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
 
-#### About
-Behind the scenes pf tje virtual MediaDevice, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, without ever streaming your real image. 
+Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
 
 #### Usage
 Follow the instructions to install as an extension in your preferred browser:
