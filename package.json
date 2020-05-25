@@ -1,9 +1,9 @@
 {
-  "name": "ParcelTest",
+  "name": "meething-ml-camera",
   "version": "1.0.0",
   "description": "",
   "author": "",
-  "license": "ISC",
+  "license": "(MIT OR Apache-2.0)",
   "dependencies": {
     "@tensorflow-models/facemesh": "^0.0.1",
     "@tensorflow-models/posenet": "^2.2.1",
