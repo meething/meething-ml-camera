@@ -10,21 +10,21 @@ class FilterStream {
     //const svg = document.querySelector(".illustration-canvas");
     this.canvas = canvas;
     //this.svg = svg;
-
+    
+    video.srcObject = stream;
+    video.autoplay = true;
+    this.video = video;
+    //this.ctx = this.svg.getContext("2d");
+    this.outputStream = this.canvas.captureStream();
+    this.canvasActiveLayer = null;
+    this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight, false)
+    this.addedCanvas = false;
     video.addEventListener("playing", () => {
       // Use a 2D Canvas.
       this.canvas.width = this.video.videoWidth;
       this.canvas.height = this.video.videoHeight;
       this.update();
     });
-    video.srcObject = stream;
-    video.autoplay = true;
-    this.video = video;
-    this.ctx = this.svg.getContext("2d");
-    this.outputStream = this.canvas.captureStream();
-    this.canvasActiveLayer = null;
-    this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight, false)
-    this.addedCanvas = false;
   }
 
   update() {
