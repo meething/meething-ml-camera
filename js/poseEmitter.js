@@ -73,6 +73,7 @@ export default class PoseEmitter {
     };
     
     this.loadModels();
+    this.isRunning = false;
   }
   
   async sampleAndDetect()
@@ -82,7 +83,12 @@ export default class PoseEmitter {
     if (!self.loadedModel) {
       return;
     }
-
+    
+    if(this.isRunning)
+      {
+        return;
+      }
+    this.isRunning = true;
     self.video.width = self.videoWidth;
     self.video.height = self.videoHeight;
 
@@ -164,7 +170,7 @@ export default class PoseEmitter {
         // input.dispose();
         console.log(err);
       }
-      
+    this.isRunning = false;  
     return self.canvasScope.project.activeLayer;
     }
     
