@@ -1,3 +1,5 @@
+import PoseEmitter from "./poseEmitter.js";
+
 class FilterStream {
   constructor(stream, shader) {
     console.log("New Filter for stream", stream);

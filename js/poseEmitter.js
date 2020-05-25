@@ -16,8 +16,8 @@ import "babel-polyfill";
 import * as boySVG from "../svg/boy.svg";
 import * as girlSVG from "../svg/girl.svg";
 
-export default class PoseDetector {
-  constructor(video,videoWidth,videoHeight) {
+export default class PoseEmitter {
+  constructor(video,videoWidth,videoHeight,cb) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
     this.videoWidth = videoWidth ? videoWidth : 320;
@@ -27,8 +27,9 @@ export default class PoseDetector {
     this.faceDetection = null;
     this.illustration = null;
     this.canvasScope = paper.default;
-    let canvas = document.querySelector(".illustration-canvas");
+    // let canvas = document.querySelector(".illustration-canvas");
     // TODO: use an invisible canvas we return at the end, do not render it
+    let canvas = document.createElement('canvas');
     canvas.width = videoWidth ? videoWidth : 320;
     canvas.height = videoHeight ? videoHeight : 240;
     this.canvasScope.setup(canvas);
@@ -147,16 +148,18 @@ export default class PoseDetector {
             // paper project undefined!
             console.log("ERROR! Paper project undefined", self.canvasScope);
           }
+          
+          if(cb) cb(self.canvasScope.activeLayer);
+          
         } catch (err) {
           // input.dispose();
           console.log(err);
         }
 
-        //requestAnimationFrame(poseDetectionFrame);
-        setTimeout(poseDetectionFrame, 200);
+        //setTimeout(poseDetectionFrame, 200);
       }
 
-      poseDetectionFrame();
+      //poseDetectionFrame();
     });
   }
 
