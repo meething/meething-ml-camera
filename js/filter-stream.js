@@ -1,4 +1,4 @@
-//import PoseEmitter from "./poseEmitter.js";
+import PoseEmitter from "./poseEmitter.js";
 
 class FilterStream {
   constructor(stream, shader) {
@@ -21,6 +21,7 @@ class FilterStream {
     this.video = video;
     this.ctx = this.canvas.getContext("2d");
     this.outputStream = this.canvas.captureStream();
+    this.canvasActiveLayer = null;
   }
 
   update() {
@@ -32,9 +33,15 @@ class FilterStream {
     this.ctx.fillText("Virtual", 10, 10);
     
     // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
-
+    new PoseEmitter(this.video, false, false, )
     requestAnimationFrame(() => this.update());
   }
+  
+  setCanvasActiveLayer(activeLayer)
+  {
+    this.canvasActiveLayer = activeLayer;
+  }
+  
 }
 
 export { FilterStream };
