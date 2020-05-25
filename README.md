@@ -15,23 +15,22 @@ npm run build
 npm start
 ```
 
-#### Usage as Extension
+#### Usage as Extension (alpha)
 Follow the instructions to install as an extension in your preferred browser:
-
 
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chromium_Material_Icon.png/64px-Chromium_Material_Icon.png" width=20> Chromium
 * download or clone the repo
 * go to chrome://extensions
 * enable Developer Mode
 * Load unpacked
-* Browse to the folder with the extension (where the manifest.json is)
+* Browse to the folder with the extension (where the `manifest.json` file is)
 
 
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=20> Firefox 
 * download or clone the repo
 * go to about:debugging#/runtime/this-firefox
 * Click "Load Temporary Add-on..."
-* Browse to the folder with the extension and select the manifest.json
+* Browse to the folder with the extension and select the `manifest.json` file
 
 
 #### Credits
