@@ -11,7 +11,7 @@ Behind the scenes, the actual camera frames are being processed by PoseNet and F
 Follow the instructions to install as an extension in your preferred browser:
 
 
-##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chromium_Material_Icon.png/64px-Chromium_Material_Icon.png" width=50> Chromium
+##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chromium_Material_Icon.png/64px-Chromium_Material_Icon.png" width=20> Chromium
 * download or clone the repo
 * go to chrome://extensions
 * enable Developer Mode
@@ -19,7 +19,7 @@ Follow the instructions to install as an extension in your preferred browser:
 * Browse to the folder with the extension (where the manifest.json is)
 
 
-##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=50> Firefox 
+##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=20> Firefox 
 * download or clone the repo
 * go to about:debugging#/runtime/this-firefox
 * Click "Load Temporary Add-on..."
