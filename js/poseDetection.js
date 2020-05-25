@@ -7,7 +7,7 @@ import * as paper from 'paper';
 import "babel-polyfill";
 
 //import * as girlSVG from '../resources/illustration/girl.svg';
-import * as boySVG from '../boy.svg';
+import * as boySVG from '../svg/boy.svg';
 //import * as abstractSVG from '../resources/illustration/abstract.svg';
 //import * as blathersSVG from '../resources/illustration/blathers.svg';
 //import * as tomNookSVG from '../resources/illustration/tom-nook.svg';
