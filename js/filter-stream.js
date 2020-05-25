@@ -42,6 +42,7 @@ class FilterStream {
   setCanvasActiveLayer(activeLayer)
   {
     self.canvasActiveLayer = activeLayer;
+    console.log("Set canvas active layer: ", self.canvasActiveLayer)
   }
   
 }
