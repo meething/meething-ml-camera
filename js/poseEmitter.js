@@ -17,7 +17,7 @@ import * as boySVG from "../svg/boy.svg";
 import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseEmitter {
-  constructor(video,videoWidth,videoHeight,cb) {
+  constructor(video,videoWidth,videoHeight,callback) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
     this.videoWidth = videoWidth ? videoWidth : 320;
@@ -70,7 +70,9 @@ export default class PoseEmitter {
       this.loadedModel = true;
       console.log("loaded models");
     };
-
+    
+    sampleAndDetect()
+    {
     this.video.addEventListener("playing", async () => {
       if (!this.loadedModel) {
         await this.loadModels();
@@ -106,7 +108,7 @@ export default class PoseEmitter {
             scoreThreshold: self.minPartConfidence,
             nmsRadius: self.nmsRadius
           });
-         console.log("pose detected : ", all_poses);
+         // console.log("pose detected : ", all_poses);
 
           //Dispatch event
           var event = new CustomEvent("poseDetected", {
@@ -149,7 +151,10 @@ export default class PoseEmitter {
             console.log("ERROR! Paper project undefined", self.canvasScope);
           }
           
-          if(cb) cb(self.canvasScope.activeLayer);
+          // Send the activelayer to the callback function
+          if(callback){ 
+            callback(self.canvasScope.project.activeLayer);
+          }
           
         } catch (err) {
           // input.dispose();
@@ -161,6 +166,7 @@ export default class PoseEmitter {
 
       poseDetectionFrame();
     });
+    }
   }
 
   async parseSVG(target) {
