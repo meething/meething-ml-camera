@@ -1,7 +1,8 @@
 import PoseEmitter from "./poseEmitter.js";
-
+var self = null;
 class FilterStream {
   constructor(stream, shader) {
+    self = this;
     console.log("New Filter for stream", stream);
     this.stream = stream;
     const video = document.createElement("video");
@@ -40,7 +41,7 @@ class FilterStream {
   
   setCanvasActiveLayer(activeLayer)
   {
-    this.canvasActiveLayer = activeLayer;
+    self.canvasActiveLayer = activeLayer;
   }
   
 }

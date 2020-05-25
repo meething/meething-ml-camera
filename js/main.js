@@ -9,12 +9,12 @@ async function init() {
     video: { deviceId: "virtual", width: 320, height: 240 },
     audio: false
   });
-  const video = document.createElement("video");
-  video.setAttribute("id", "local");
-  video.setAttribute("class", "video-local");
-  video.srcObject = stream;
-  video.autoplay = true;
-  document.body.append(video);
+  // const video = document.createElement("video");
+  // video.setAttribute("id", "local");
+  // video.setAttribute("class", "video-local");
+  // video.srcObject = stream;
+  // video.autoplay = true;
+  // document.body.append(video);
   //new PoseDetector();
 }
 

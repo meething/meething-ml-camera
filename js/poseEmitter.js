@@ -106,7 +106,7 @@ export default class PoseEmitter {
             scoreThreshold: self.minPartConfidence,
             nmsRadius: self.nmsRadius
           });
-          console.log("pose detected : ", all_poses);
+         console.log("pose detected : ", all_poses);
 
           //Dispatch event
           var event = new CustomEvent("poseDetected", {
