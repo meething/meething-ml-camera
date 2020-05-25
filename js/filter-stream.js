@@ -33,10 +33,10 @@ class FilterStream {
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.textBaseline = "top";
     this.ctx.fillText("Virtual", 10, 10);
-    this.poseEmitter.sampleAndDetect();
+    this.canvasActiveLayer = this.poseEmitter.sampleAndDetect();
     // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
     
-    window.requestAnimationFrame(() => this.update());
+    requestAnimationFrame(() => this.update());
   }
   
   setCanvasActiveLayer(activeLayer)
