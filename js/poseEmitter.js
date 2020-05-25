@@ -38,7 +38,8 @@ export default class PoseEmitter {
     this.canvasWidth = this.canvas.width;
     this.canvasHeight = this.canvas.height;
     console.log("Canvas scope = ", this.canvasScope);
-
+    
+    
     // ML models
     // let facemesh;
     this.minPoseConfidence = 0.15;
@@ -173,7 +174,7 @@ export default class PoseEmitter {
     this.isRunning = false;  
     //return self.canvasScope.project.activeLayer;
     
-    console.log("pose canvas = ", self.canvas);
+    // console.log("pose canvas = ", self.canvas);
     return self.canvas;
     }
     
