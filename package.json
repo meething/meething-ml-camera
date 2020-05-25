@@ -17,8 +17,7 @@
   },
   "scripts": {
     "start": "parcel cam.html --no-source-maps",
-    "build": "rm -rf ./dist && NODE_ENV=production parcel build cam.html --no-source-maps -o index.html && npm run patch",
-    "patch": "MAIN=$(find ./dist -name '*main*') && mv $MAIN ./dist/main.js",
+    "build": "rm -rf ./dist && NODE_ENV=production parcel build js/main.js --no-source-maps -o main.js",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
