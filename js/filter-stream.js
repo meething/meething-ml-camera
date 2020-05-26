@@ -48,7 +48,7 @@ class FilterStream {
         //this.ctx.fillText("Loading...", 10, 10);
     }
 
-    // this.drawOnCanvas();
+    this.drawOnCanvas();
 
     requestAnimationFrame(() => this.update());
   }

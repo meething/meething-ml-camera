@@ -22,7 +22,7 @@ import * as boySVG from "../svg/boy.svg";
 
 export default class PoseEmitter {
 
-  constructor(video, videoWidth, videoHeight, callback) {
+  constructor(video, videoWidth, videoHeight) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
     this.videoWidth = videoWidth ? videoWidth : 640;
@@ -154,11 +154,6 @@ export default class PoseEmitter {
         // paper project undefined!
         console.log("ERROR! Paper project undefined", self.canvasScope);
       }
-
-      // Send the activelayer to the callback function
-      // if(callback){ 
-      //   callback(self.canvasScope.project.activeLayer);
-      // }
 
     } catch (err) {
       // input.dispose();

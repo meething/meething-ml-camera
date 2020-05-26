@@ -1,4 +1,5 @@
 import { monkeyPatchMediaDevices } from "./media-devices.js";
+
 monkeyPatchMediaDevices();
 
 async function init() {
