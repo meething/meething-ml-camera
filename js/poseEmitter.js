@@ -1,8 +1,8 @@
+import "babel-polyfill";
 import * as posenet from '@tensorflow-models/posenet';
 import * as facemesh from '@tensorflow-models/facemesh';
 import * as tf from '@tensorflow/tfjs';
 import * as paper from "paper";
-import "babel-polyfill";
 
 import {
   drawKeypoints,
@@ -19,15 +19,14 @@ import { FileUtils } from "./utils/fileUtils.js";
 
 
 import * as boySVG from "../svg/boy.svg";
-import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseEmitter {
 
   constructor(video, videoWidth, videoHeight, callback) {
     this.video = video ? video : document.getElementById("local");
     // Camera stream video element
-    this.videoWidth = videoWidth ? videoWidth : 320;
-    this.videoHeight = videoHeight ? videoHeight : 240;
+    this.videoWidth = videoWidth ? videoWidth : 640;
+    this.videoHeight = videoHeight ? videoHeight : 480;
 
     // Canvas
     this.faceDetection = null;
@@ -36,8 +35,8 @@ export default class PoseEmitter {
     // let canvas = document.querySelector(".illustration-canvas");
     // TODO: use an invisible canvas we return at the end, do not render it
     this.canvas = document.createElement('canvas');
-    this.canvas.width = videoWidth ? videoWidth : 320;
-    this.canvas.height = videoHeight ? videoHeight : 240;
+    this.canvas.width = videoWidth ? videoWidth : 640;
+    this.canvas.height = videoHeight ? videoHeight : 480;
     this.canvasScope.setup(this.canvas);
 
     this.canvasWidth = this.canvas.width;
@@ -124,22 +123,13 @@ export default class PoseEmitter {
       });
       console.log("pose detected : ", all_poses);
 
-      //Dispatch event
-      // var event = new CustomEvent("poseDetected", {
-      //   detail: {
-      //     faceMesh: self.faceDetection,
-      //     pose: all_poses
-      //   }
-      // });
-      // self.video.dispatchEvent(event);
-
       poses = poses.concat(all_poses);
       input.dispose();
 
       self.canvasScope.project.clear();
 
       if (poses.length >= 1 && self.illustration) {
-        //Skeleton.flipPose(poses[0]);
+        Skeleton.flipPose(poses[0]);
 
         if (self.faceDetection && self.faceDetection.length > 0) {
           let face = Skeleton.toFaceFrame(self.faceDetection[0]);

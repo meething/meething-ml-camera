@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "parcel cam.html --no-source-maps",
-    "build": "rm -rf ./dist && NODE_ENV=production parcel build js/main.js --no-source-maps -o main.js",
+    "build": "rm -rf ./dist && NODE_ENV=production parcel build js/main.js --no-source-maps -o main.js && npm run patch",
+    "patch": "sed -i 's|/boy..*.svg|//cdn.jsdelivr.net/gh/meething/meething-ml-camera@ext/svg/boy.svg|g' ./dist/main.js",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
