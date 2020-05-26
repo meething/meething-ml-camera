@@ -14,7 +14,7 @@ import * as paper from "paper";
 import "babel-polyfill";
 
 import * as boySVG from "../svg/boy.svg";
-import * as girlSVG from "../svg/girl.svg";
+//import * as girlSVG from "../svg/girl.svg";
 
 export default class PoseDetector {
   constructor(video,videoWidth,videoHeight) {

@@ -1,6 +1,6 @@
 {
   "name": "meething-ml-camera",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "",
   "license": "(MIT OR Apache-2.0)",
@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "parcel cam.html --no-source-maps",
-    "build": "NODE_ENV=production parcel build cam.html --no-source-maps -o index.html",
+    "build": "rm -rf ./dist && NODE_ENV=production parcel build js/main.js --no-source-maps -o main.js && npm run patch",
+    "patch": "sed -i 's|/boy..*.svg|//cdn.jsdelivr.net/gh/meething/meething-ml-camera@ext/svg/boy.svg|g' ./dist/main.js",
     "lint": "eslint .",
     "link-local": "yalc link"
   },
@@ -39,6 +40,7 @@
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "parcel-bundler": "~1.12.4",
+    "parcel-plugin-static-files-copy": "^2.3.1",
     "yalc": "~1.0.0-pre.27"
   },
   "eslintConfig": {

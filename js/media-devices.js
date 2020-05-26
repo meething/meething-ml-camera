@@ -31,8 +31,8 @@ function monkeyPatchMediaDevices() {
           video: {
             facingMode: args[0].facingMode,
             advanced: args[0].video.advanced,
-            width: args[0].video.width,
-            height: args[0].video.height
+            width: args[0].video.width || 640,
+            height: args[0].video.height || 480
           },
           audio: false
         };

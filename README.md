@@ -23,14 +23,14 @@ Follow the instructions to install as an extension in your preferred browser:
 * go to chrome://extensions
 * enable Developer Mode
 * Load unpacked
-* Browse to the folder with the extension (where the `manifest.json` file is)
+* Browse to the `dist` folder with the extension (where the `manifest.json` file is)
 
 
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=20> Firefox 
 * download or clone the repo
 * go to about:debugging#/runtime/this-firefox
 * Click "Load Temporary Add-on..."
-* Browse to the folder with the extension and select the `manifest.json` file
+* Browse to the `dist` folder with the extension and select the `manifest.json` file
 
 
 #### Credits
