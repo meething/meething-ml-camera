@@ -7,9 +7,6 @@ Machine-Learning powered Virtual MediaDevice extension for any browser-based con
 
 Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
 
-![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
-
-
 #### Usage
 To test the model without installing any extension, run the following or use glitch:
 ```
@@ -41,3 +38,5 @@ This humble _hack-speriment_ would not be possible without the following project
 * [Virtual Browser Camera shaders](https://github.com/spite/virtual-webcam) by [spite](https://github.com/spite)
 * [Pose Animator](https://github.com/yemount/pose-animator) by [yemount](https://github.com/yemount)
 * [Meething](https://us.meething.space) by [Team Meething](https://github.com/meething/meething/graphs/contributors)
+
+![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
