@@ -3,9 +3,12 @@
 ### Meething : Machine-Learning Camera
 Machine-Learning powered Virtual MediaDevice extension for any browser-based conferencing service.
 
-![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
+![ezgif com-optimize (66)](https://user-images.githubusercontent.com/1423657/83061179-de958e00-a05c-11ea-844f-141f55d4e092.gif)
 
 Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
+
+![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
+
 
 #### Usage
 To test the model without installing any extension, run the following or use glitch:
