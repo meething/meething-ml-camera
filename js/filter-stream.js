@@ -38,9 +38,9 @@ class FilterStream {
      	this.canvas.width = this.video.videoWidth;
      	this.canvas.height = this.video.videoHeight;
 	this.ctx.drawImage(this.svgCanvas, 0, 0, this.video.videoHeight, this.video.videoWidth);
-        this.ctx.fillStyle = "#ffff00";
-        this.ctx.textBaseline = "top";
-        this.ctx.fillText("Virtual Camera", 10, 10);
+        //this.ctx.fillStyle = "#ffff00";
+        //this.ctx.textBaseline = "top";
+        //this.ctx.fillText("Virtual Camera", 10, 10);
     } else {
      	//this.canvas.width = this.video.videoWidth;
      	//this.canvas.height = this.video.videoHeight;
@@ -49,7 +49,7 @@ class FilterStream {
         //this.ctx.textBaseline = "top";
         //this.ctx.fillText("Loading...", 10, 10);
     }
-    this.drawOnCanvas();
+    await this.drawOnCanvas();
     requestAnimationFrame(() => this.update());
   }
 
