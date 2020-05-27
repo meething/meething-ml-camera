@@ -41,7 +41,7 @@ export default class PoseEmitter {
 
     this.canvasWidth = this.canvas.width;
     this.canvasHeight = this.canvas.height;
-    console.log("Canvas scope = ", this.canvasScope);
+    // console.log("Canvas scope = ", this.canvasScope);
 
 
     // ML models
@@ -121,7 +121,7 @@ export default class PoseEmitter {
         scoreThreshold: self.minPartConfidence,
         nmsRadius: self.nmsRadius
       });
-      console.log("pose detected : ", all_poses);
+      // console.log("pose detected : ", all_poses);
 
       poses = poses.concat(all_poses);
       input.dispose();
