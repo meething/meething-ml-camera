@@ -9,7 +9,7 @@ class FilterStream {
     const canvas = document.createElement("canvas");
     this.canvas = canvas;
 
-    this.addedCanvas = false;
+    this.addedCanvas = true;
     this.svgCanvas;
 
     video.addEventListener("playing", async () => {
@@ -17,7 +17,7 @@ class FilterStream {
       // Use a 2D Canvas.
       this.canvas.width = this.video.videoWidth;
       this.canvas.height = this.video.videoHeight;
-      this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight)
+      if (!this.poseEmitter) this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight)
       this.update();
     });
 
@@ -32,20 +32,21 @@ class FilterStream {
 
   async update() {
     if(!this.poseEmitter) return;
-    this.svgCanvas = await this.poseEmitter.sampleAndDetect();
     // Use a 2D Canvas
     if (this.svgCanvas instanceof HTMLCanvasElement) {
      	this.canvas.width = this.video.videoWidth;
      	this.canvas.height = this.video.videoHeight;
-	this.ctx.drawImage(this.svgCanvas, 0, 0);
+	this.ctx.drawImage(this.svgCanvas, 0, 0, this.video.videoHeight, this.video.videoWidth);
         this.ctx.fillStyle = "#ffff00";
         this.ctx.textBaseline = "top";
-        this.ctx.fillText("Virtual", 10, 10);
+        this.ctx.fillText("Virtual Camera", 10, 10);
     } else {
+     	this.canvas.width = this.video.videoWidth;
+     	this.canvas.height = this.video.videoHeight;
         //this.ctx.drawImage(this.video, 0, 0);
         //this.ctx.fillStyle = "#ff00ff";
         //this.ctx.textBaseline = "top";
-        //this.ctx.fillText("Loading...", 10, 10);
+        this.ctx.fillText("Loading...", 10, 10);
     }
 
     this.drawOnCanvas();
@@ -56,8 +57,12 @@ class FilterStream {
 
   async drawOnCanvas()
   {
+    if (svgCanvas) return;
     let svgCanvas = await this.poseEmitter.sampleAndDetect();
     if(svgCanvas instanceof HTMLCanvasElement){
+
+      this.svgCanvas = svgCanvas;
+
       if(!this.addedCanvas){
         document.body.appendChild(svgCanvas);
         this.addedCanvas = true;
