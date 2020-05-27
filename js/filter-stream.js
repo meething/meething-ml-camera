@@ -9,7 +9,7 @@ class FilterStream {
     const canvas = document.createElement("canvas");
     this.canvas = canvas;
 
-    this.addedCanvas = true;
+    this.addedCanvas = false;
     this.svgCanvas;
 
     video.addEventListener("playing", async () => {
@@ -57,12 +57,13 @@ class FilterStream {
 
   async drawOnCanvas()
   {
-    if (svgCanvas) return;
     let svgCanvas = await this.poseEmitter.sampleAndDetect();
     if(svgCanvas instanceof HTMLCanvasElement){
 
       this.svgCanvas = svgCanvas;
-
+      this.svgCanvas.width = this.video.videoWidth;
+      this.svgCanvas.height = this.video.videoHeight;
+      this.outputStream = this.svgCanvas.captureStream();
       if(!this.addedCanvas){
         document.body.appendChild(svgCanvas);
         this.addedCanvas = true;
