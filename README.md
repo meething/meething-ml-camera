@@ -29,7 +29,7 @@ Nothing to compile if you want to use the extension - Follow the instructions to
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=20> Firefox 
 * download or clone the repo
 * go to about:debugging#/runtime/this-firefox
-* Click "Load Temporary Add-on..."
+* Click _"Load Temporary Add-on..."_
 * Browse to the `dist` folder with the extension and select the `manifest.json` file
 
 #### Usage without Extension
