@@ -32,6 +32,8 @@ Nothing to compile if you want to use the extension - Follow the instructions to
 * Click "Load Temporary Add-on..."
 * Browse to the `dist` folder with the extension and select the `manifest.json` file
 
+#### Usage without Extension
+If you want to use this without extension, try our decentralized conference project [Meething](https://github.com/meething/meething)
 
 #### Credits
 This humble _hack-speriment_ would not be possible without the following projects:
