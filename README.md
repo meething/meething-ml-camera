@@ -5,7 +5,9 @@ Machine-Learning powered Virtual MediaDevice extension for any browser-based con
 
 ![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
 
-Can you videocall without showing your video? Now you can! Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
+Can you videocall without showing your video? Now you can! 
+
+Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
 
 <img src="https://user-images.githubusercontent.com/1423657/83058220-53b29480-a058-11ea-96c2-5da2c4d3abc5.png" width="600"/>
 
