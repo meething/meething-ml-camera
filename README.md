@@ -35,6 +35,8 @@ Nothing to compile if you want to use the extension - Follow the instructions to
 #### Usage without Extension
 If you want to use this without extension, try our decentralized conference project [Meething](https://github.com/meething/meething)
 
+<img src="https://user-images.githubusercontent.com/1423657/83169658-a56c2500-a113-11ea-9198-7900d497fac3.gif" width=500 />
+
 #### Credits
 This humble _hack-speriment_ would not be possible without the following projects:
 * [Virtual Browser Camera shaders](https://github.com/spite/virtual-webcam) by [spite](https://github.com/spite)
