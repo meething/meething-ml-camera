@@ -3,14 +3,9 @@
 ### Meething : Machine-Learning Camera
 Machine-Learning powered Virtual MediaDevice extension for any browser-based conferencing service.
 
-![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
-
-Can you videocall without showing your video? Now you can! 
+![ezgif com-optimize (66)](https://user-images.githubusercontent.com/1423657/83061179-de958e00-a05c-11ea-844f-141f55d4e092.gif)
 
 Behind the scenes, the actual camera frames are being processed by PoseNet and FaceMesh producing coordinates used to animate an [SVG Character](https://github.com/yemount/pose-animator) which replaces the camera output, never streaming your real image. 
-
-<img src="https://user-images.githubusercontent.com/1423657/83058220-53b29480-a058-11ea-96c2-5da2c4d3abc5.png" width="600"/>
-
 
 #### Usage
 To test the model without installing any extension, run the following or use glitch:
@@ -21,7 +16,7 @@ npm start
 ```
 
 #### Usage as Extension (alpha)
-Follow the instructions to install as an extension in your preferred browser:
+Nothing to compile if you want to use the extension - Follow the instructions to install in your preferred browser:
 
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chromium_Material_Icon.png/64px-Chromium_Material_Icon.png" width=20> Chromium
 * download or clone the repo
