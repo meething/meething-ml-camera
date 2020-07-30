@@ -16,7 +16,7 @@ npm start
 ```
 
 #### Usage as Extension (alpha)
-Follow the instructions to install as an extension in your preferred browser:
+Nothing to compile if you want to use the extension - Follow the instructions to install in your preferred browser:
 
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Chromium_Material_Icon.png/64px-Chromium_Material_Icon.png" width=20> Chromium
 * download or clone the repo
@@ -32,6 +32,10 @@ Follow the instructions to install as an extension in your preferred browser:
 * Click "Load Temporary Add-on..."
 * Browse to the `dist` folder with the extension and select the `manifest.json` file
 
+#### Usage without Extension
+If you want to use this without extension, try our decentralized conference project [Meething](https://github.com/meething/meething)
+
+<img src="https://user-images.githubusercontent.com/1423657/83169658-a56c2500-a113-11ea-9198-7900d497fac3.gif" width=500 />
 
 #### Credits
 This humble _hack-speriment_ would not be possible without the following projects:
