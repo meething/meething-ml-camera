@@ -7,58 +7,65 @@ class FilterStream {
     this.stream = stream;
     const video = document.createElement("video");
     const canvas = document.createElement("canvas");
-    //const svg = document.querySelector(".illustration-canvas");
     this.canvas = canvas;
-    //this.svg = svg;
-    
-    video.srcObject = stream;
-    video.autoplay = true;
-    this.video = video;
-    //this.ctx = this.svg.getContext("2d");
-    this.outputStream = this.canvas.captureStream();
-    this.canvasActiveLayer = null;
-    this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight, false)
+
     this.addedCanvas = false;
-    video.addEventListener("playing", () => {
+    this.svgCanvas;
+
+    video.addEventListener("playing", async () => {
+      console.log('video is playing',this.video.videoWidth, this.video.videoHeight);
       // Use a 2D Canvas.
       this.canvas.width = this.video.videoWidth;
       this.canvas.height = this.video.videoHeight;
+      if (!this.poseEmitter) this.poseEmitter = new PoseEmitter(this.video, this.video.videoWidth, this.video.videoHeight)
       this.update();
     });
+
+    video.srcObject = stream;
+    video.autoplay = true;
+    this.video = video;
+
+    this.ctx = this.canvas.getContext("2d");
+    this.outputStream = this.canvas.captureStream();
+
   }
 
-  update() {
+  async update() {
+    if(!this.poseEmitter) return;
     // Use a 2D Canvas
-    // this.ctx.filter = 'invert(1)';
-    // this.canvas.width = this.video.videoWidth;
-    // this.canvas.height = this.video.videoHeight;
-    // this.svg.width = this.video.videoWidth;
-    // this.svg.height = this.video.videoHeight;
-    
-    // this.ctx.drawImage(this.video, 0, 0);
-    // this.ctx.fillStyle = "#ff00ff";
-    // this.ctx.textBaseline = "top";
-    // this.ctx.fillText("Virtual", 10, 10);
-    this.drawOnCanvas();
-    
+    //if (this.svgCanvas instanceof HTMLCanvasElement) {
+    if (this.svgCanvas) {
+     	this.canvas.width = this.video.videoWidth;
+     	this.canvas.height = this.video.videoHeight;
+	this.ctx.drawImage(this.svgCanvas, 0, 0, this.video.videoHeight, this.video.videoWidth);
+        //this.ctx.fillStyle = "#ffff00";
+        //this.ctx.textBaseline = "top";
+        //this.ctx.fillText("Virtual Camera", 10, 10);
+    } else {
+     	//this.canvas.width = this.video.videoWidth;
+     	//this.canvas.height = this.video.videoHeight;
+        //this.ctx.drawImage(this.video, 0, 0);
+        //this.ctx.fillStyle = "#ff00ff";
+        //this.ctx.textBaseline = "top";
+        //this.ctx.fillText("Loading...", 10, 10);
+    }
+    await this.drawOnCanvas();
     requestAnimationFrame(() => this.update());
   }
-  
+
+
   async drawOnCanvas()
   {
-    let svgCanvas = await this.poseEmitter.sampleAndDetect();
-    if(svgCanvas instanceof HTMLCanvasElement){
+    this.svgCanvas = await this.poseEmitter.sampleAndDetect();
+    if(this.svgCanvas instanceof HTMLCanvasElement){
+      this.svgCanvas.width = this.video.videoWidth;
+      this.svgCanvas.height = this.video.videoHeight;
       if(!this.addedCanvas){
-        document.body.appendChild(svgCanvas);
+        this.outputStream = this.svgCanvas.captureStream();
         this.addedCanvas = true;
       }
-      // console.log("SVG invisible canvas - ", svgCanvas);
-      // let svgImage = svgCanvas.getContext("2d").createImageData(svgCanvas.width, svgCanvas.height);
-      // this.ctx.drawImage(svgImage, 0, 0);
-    // TODO: REPLACE INPUT WITH DRIVER VIDEO AND OUTPUT CANVAS WITH SVG CANVAS
     }
   }
-  
 }
 
 export { FilterStream };

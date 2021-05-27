@@ -3,6 +3,7 @@ import { FilterStream } from "./filter-stream.js";
 function monkeyPatchMediaDevices() {
   const enumerateDevicesFn = MediaDevices.prototype.enumerateDevices;
   const getUserMediaFn = MediaDevices.prototype.getUserMedia;
+  var filter;
 
   MediaDevices.prototype.enumerateDevices = async function() {
     const res = await enumerateDevicesFn.call(navigator.mediaDevices);
@@ -24,15 +25,14 @@ function monkeyPatchMediaDevices() {
         args[0].video.deviceId === "virtual" ||
         args[0].video.deviceId.exact === "virtual"
       ) {
+        if(filter && filter.outputStream) return filter.outputStream;
         // This constraints could mimick closely the request.
         // Also, there could be a preferred webcam on the options.
         // Right now it defaults to the predefined input.
         const constraints = {
           video: {
-            facingMode: args[0].facingMode,
-            advanced: args[0].video.advanced,
-            width: args[0].video.width,
-            height: args[0].video.height
+            width: args[0].video.width || 640,
+            height: args[0].video.height || 480
           },
           audio: false
         };
@@ -42,7 +42,7 @@ function monkeyPatchMediaDevices() {
         );
         if (res) {
           var shader = false;
-          const filter = new FilterStream(res, shader);
+          filter = new FilterStream(res, shader);
           return filter.outputStream;
         }
       }

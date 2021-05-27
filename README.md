@@ -29,7 +29,7 @@ Nothing to compile if you want to use the extension - Follow the instructions to
 ##### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/68px-Firefox_logo%2C_2019.svg.png" width=20> Firefox 
 * download or clone the repo
 * go to about:debugging#/runtime/this-firefox
-* Click _"Load Temporary Add-on..."_
+* Click "Load Temporary Add-on..."
 * Browse to the `dist` folder with the extension and select the `manifest.json` file
 
 #### Usage without Extension
@@ -42,3 +42,5 @@ This humble _hack-speriment_ would not be possible without the following project
 * [Virtual Browser Camera shaders](https://github.com/spite/virtual-webcam) by [spite](https://github.com/spite)
 * [Pose Animator](https://github.com/yemount/pose-animator) by [yemount](https://github.com/yemount)
 * [Meething](https://us.meething.space) by [Team Meething](https://github.com/meething/meething/graphs/contributors)
+
+![image](https://user-images.githubusercontent.com/1423657/82818656-561dbe80-9e9f-11ea-90a1-5436fdcb84e5.png)
